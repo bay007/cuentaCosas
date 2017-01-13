@@ -3,8 +3,10 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  View
-  } from 'react-native';
+  Text,
+  View,
+  Alert
+} from 'react-native';
 import _Registrador from './registrador';
 
 export default class contacosas extends Component {
@@ -19,11 +21,22 @@ constructor(props) { //declaramos el constructor de el componente (NOTA: La estr
   render() {
     return (
       <View style={styles.mainContainer}>
-        <_Registrador></_Registrador>
-        <_Registrador></_Registrador>
-        <_Registrador></_Registrador>
+        {this._renderRegistradores()}
       </View>
     )
+  }
+
+  _renderRegistradores=()=>{
+    var arreglo=[];
+    var fila=[];
+
+    fila.push(<_Registrador></_Registrador>);
+    fila.push(<_Registrador></_Registrador>);
+    
+    arreglo.push(<View style={ styles.columnas } >{ fila }</View>);
+    arreglo.push(<View style={ styles.columnas } >{ fila }</View>);
+
+    return arreglo;
   }
 
 }
@@ -32,6 +45,10 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     flexDirection: 'row'
+  },
+  columnas:{
+    flex:1,
+    flexDirection:'column'  
   }
 });
 
